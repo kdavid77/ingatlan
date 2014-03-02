@@ -1,0 +1,17 @@
+- alap
+  - mysql adatbazis
+- regisztracio
+- autorizacio
+- uj ingatlan letrehozasa
+- ingatlan adatok
+- ingatlan kepek
+- tranzakcio adatok
+
+modell:
+1. user
+  - ID
+  - full name
+  - email
+  - password
+  - status
+  - verification
