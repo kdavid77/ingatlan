@@ -9,9 +9,9 @@
 
 modell:
 1. user
-  - ID
-  - full name
-  - email
-  - password
-  - status
-  - verification
+  - ID:integer
+  - name:string
+  - email:string
+  - password_digest: string
+  - admin: boolean
+  - remember_token: string
