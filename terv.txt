@@ -7,11 +7,9 @@
 - ingatlan kepek
 - tranzakcio adatok
 
-modell:
-1. user
-  - ID:integer
-  - name:string
-  - email:string
-  - password_digest: string
-  - admin: boolean
-  - remember_token: string
+
+user:
+- modell:
+  - ID:integer, name:string, email:string, password_digest: string, admin: boolean, remember_token: string
+  
+kontroller:
