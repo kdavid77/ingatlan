@@ -1,7 +1,10 @@
 Imdb::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/signin"
-  get "static_pages/signup"
+  root 'static_pages#home'
+  match '/signin', to: 'static_pages#signin', via: 'get'
+  match "/signup", to: "static_pages#signup", via: "get"
+  match "/about", to: "static_pages#about", via: "get"
+  match "/contact", to: "static_pages#contact", via: "get"
+
   get "users/new"
   get "users/index"
   # The priority is based upon order of creation: first created -> highest priority.
