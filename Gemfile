@@ -4,7 +4,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 gem 'bcrypt-ruby', '~>3.0.0'
 gem 'bootstrap-sass'
+
 gem 'actionmailer'
+
+gem 'postmark-rails'
 
 group :production do
   gem 'pg'

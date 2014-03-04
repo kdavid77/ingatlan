@@ -1,5 +1,5 @@
 class RegMailer < ActionMailer::Base
-  default from: "dodi@ingatlan.herokuapp.com"
+  default from: "david@larixstudio.ro"
   
   def confirmation_request(user)
     @user=user

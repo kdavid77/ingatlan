@@ -8,6 +8,9 @@ Bundler.require(:default, Rails.env)
 
 module Imdb
   class Application < Rails::Application
+    
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { :api_key => 'c260bec8-304c-4491-9b51-e4e48757995f' }
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
