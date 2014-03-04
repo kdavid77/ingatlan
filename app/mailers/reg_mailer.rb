@@ -3,7 +3,7 @@ class RegMailer < ActionMailer::Base
   
   def confirmation_request(user)
     @user=user
-    @url="ingatlan.herokuapp.com?confirm=" + @user.remember_token
+    @url="ingatlan.herokuapp.com/confirm&chk=" + @user.remember_token
     mail(to: @user.email, subject: "Ingatlan adatbázis regisztráció kérés")
   end
 end

@@ -22,6 +22,16 @@ class UsersController < ApplicationController
     end
   end
   
+  def confirm(rt)
+    user=User.find_by_remember_token(rt)
+    if user.nil?
+      render 'new'
+    else
+      user.update_attribute(:active, true)
+      redirect_to signin_path
+    end
+  end
+  
   private
   
     def user_params
