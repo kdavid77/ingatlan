@@ -4,6 +4,7 @@ Imdb::Application.routes.draw do
   match '/signin', to: 'static_pages#signin', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
+  match '/confirm', to: 'static_pages#confirm', via: 'get'
   match "/contact", to: "static_pages#contact", via: "get"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

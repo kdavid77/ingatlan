@@ -2,11 +2,15 @@ class UsersController < ApplicationController
   def new
     u=User.all
     if u.empty?
-      newDefaultUser=User.new(name:"admin", email:"admin@example.com", password:"admin123", password_confirmation:"admin123", admin:true)
+      newDefaultUser=User.new(name:"admin", email:"admin@example.com", password:"admin123", password_confirmation:"admin123", admin:true, active:true)
       newDefaultUser.save
     end
     
     @user = User.new
+  end
+  
+  def index
+    @user_list=User.all
   end
   
   def create
@@ -19,16 +23,6 @@ class UsersController < ApplicationController
       redirect_to signin_path
     else
       render 'new'
-    end
-  end
-  
-  def confirm(rt)
-    user=User.find_by_remember_token(rt)
-    if user.nil?
-      render 'new'
-    else
-      user.update_attribute(:active, true)
-      redirect_to signin_path
     end
   end
   
