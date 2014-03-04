@@ -1,0 +1,15 @@
+<% provide(:title,'Signin') %>
+
+<div class="hero-unit">
+  <h1>Bejelentkezes</h1>
+</div>
+
+<%= form_for(:session, url: sessions_path) do |f|%>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit 'Sign in', class: "btn btn-primary btn-large" %>
+<% end %>
+<p>Új felhasználó? <%= link_to "Regisztrálj!", signup_path %></p>
+

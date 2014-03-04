@@ -18,7 +18,6 @@ class StaticPagesController < ApplicationController
 	redirect_to signup_path
       else
 	user.update_attribute(:active, true)
-	user.update_attribute(:remember_token, nil)
       end
     else
       redirect_to signup_path

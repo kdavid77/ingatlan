@@ -2,11 +2,19 @@
     <div class="navbar-inner">
       <div class="container">
         <%= link_to("INGATLAN ADATBAZIS", root_path, id: "logo") %>
+        <% if signed_in? %>
+          <%= current_user.name %>
+        <% end %>
         <nav>
           <ul class="nav nav-pills pull-right">
             <li><%= link_to("Home",root_path) %></li>
-            <li><%= link_to("Belépés",signin_path) %></li>
-            <li><%= link_to("Regisztráció",signup_path) %></li>
+            <% if signed_in? %>
+              <li><%= link_to("Saját", "#") %>
+              <li><%= link_to("Kilépés", signout_path, method: "delete") %>
+            <% else %>
+              <li><%= link_to("Belépés",signin_path) %></li>
+              <li><%= link_to("Regisztráció",signup_path) %></li>
+            <% end %>
           </ul>
         </nav>
       </div> <!-- container -->

@@ -1,7 +1,9 @@
 Imdb::Application.routes.draw do
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   root 'static_pages#home'
-  match '/signin', to: 'static_pages#signin', via: 'get'
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
   match '/signup', to: 'users#new', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/confirm', to: 'static_pages#confirm', via: 'get'

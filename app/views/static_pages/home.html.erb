@@ -7,8 +7,11 @@
 <h2>Ez a foldal, hahooo!!!</h2>
 
 <center>
-  <a href=<%= signin_path %> class="btn btn-medium btn-primary">Belépés</a>
-  <a href=<%= signup_path %> class="btn btn-medium">Regisztráció</a>
+  <% if signed_in? %>
+  <% else %>
+    <a href=<%= signin_path %> class="btn btn-medium btn-primary">Belépés</a>
+    <a href=<%= signup_path %> class="btn btn-medium">Regisztráció</a>
+  <% end %>
 </center>
 
 </div>
