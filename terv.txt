@@ -1,13 +1,29 @@
 - alap
   - mysql adatbazis
-- regisztracio
-- autorizacio
+- regisztracio - ok
+- autorizacio - ok
 - uj ingatlan letrehozasa
+  - megnevezes
+  - tipus
+  - telepules
 - ingatlan adatok
+  - utca
+  - utcaresz
+  - szam, lakresz
+  - telekkonyv szam
+  - kataszteri / topo szam
 - ingatlan kepek
+  - datum
+  - kepfile
+  - leiras
 - tranzakcio adatok
+  - tipus: adasvetel, kinalat, kereslet, berlet, berlet kinalat, berlet kereslet
+  - datum / ido
+  - informacio forras
+  - forras minosege
 
 
 kell:
 - staticpages - home, login
+- modellek: user, contacts
 - sessions

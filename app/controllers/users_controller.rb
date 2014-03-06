@@ -9,8 +9,69 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
+  def show
+  end
+  
+  def edit
+    if admin_user?
+      @user = User.find_by_id(params[:id])
+    elsif signed_in?
+      @user = current_user
+    else
+      flash[:error]="Nem megengedett!"
+      redirect_to root_path
+    end
+  end
+  
+  def update
+    @user = User.find_by_id(params[:id])
+    if @user==current_user 
+      if @user.authenticate(params[:user][:old_password])
+        if params[:user][:password].empty?
+        else
+	  @user.password=params[:user][:password]
+          @user.password_confirmation=params[:user][:password_confirmation] 
+          if @user.save
+            flash.now[:success]="Jelszó módosítva"
+          else
+	    flash.now[:warning]="Jelszó nincs módosítva!"
+          end
+        end
+        if @user.name!=params[:user][:name]
+          @user.name=params[:user][:name]
+          if @user.save(validate:false)
+            flash.now[:success]="Adat módosítva"
+          else
+	    flash.now[:warning]="Adat nincs módosítva!"
+          end
+	end
+      else
+	flash[:error]="Hibás jelszó, sikertelen adat módosítás!"
+      end
+      render 'edit'
+    elsif admin_user?
+      if @user.active!=params[:user][:active]
+	@user.active=params[:user][:active]	
+      end
+      if @user.admin!=params[:user][:admin]
+        @user.admin=params[:user][:admin]
+      end
+      @user.save(validate:false)
+      flash.now[:success]="Adatok frissítve!"
+      render 'edit'
+    else
+      flash[:error]="Unauthorized access!"
+      redirect_to root_path
+    end
+  end
+  
   def index
-    @user_list=User.all
+    if admin_user?
+      @user_list=User.all
+    else
+      flash[:error]="Nem megengedett!"
+      redirect_to root_path
+    end
   end
   
   def create
@@ -29,6 +90,6 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :active, :admin)
     end
 end

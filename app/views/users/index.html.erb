@@ -1,8 +1,21 @@
-<% @user_list.each do |u| %>
-  <%= u.id %> | 
-  <%= u.name %> | 
-  <%= u.email %> |
-  <%= u.admin %> |
-  <%= u.active %> |
-  <%= u.remember_token %></br>
-<% end %>
+<%= provide(:title, "User list") %>
+
+<table class="table table-hover table-condensed">
+  <tr>
+    <th>UID</th>
+    <th>Name</th>
+    <th>E-mail</th>
+    <th>isActive?</th>
+    <th>isAdmin?</th>
+  </tr>
+  
+  <% @user_list.each do |u| %>
+    <tr>
+      <td><%= u.id %></td>
+      <td><%= link_to u.name, edit_user_path(u) %></td>
+      <td><%= u.email %></td>
+      <td><%= u.active %></td>
+      <td><%= u.admin %></td>
+    <tr>
+  <% end %>
+<table>

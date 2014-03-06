@@ -11,6 +11,9 @@ class StaticPagesController < ApplicationController
   def contact
   end
   
+  def myacc
+  end
+  
   def confirm
     if (params.has_key?(:rt))
       user=User.find_by_remember_token(:rt)

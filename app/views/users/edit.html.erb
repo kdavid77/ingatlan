@@ -1,0 +1,38 @@
+<%= provide(:title, "User edit") %>
+
+
+<%= form_for (@user) do |f| %>
+  <table>
+  <%= render 'shared/error_messages' %>
+    <tr>
+      <td><%= f.label "Név:"  %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <% if @user==current_user %>
+      <tr>
+        <td><%= f.label :old_password %></td>
+        <td><%= f.password_field :old_password %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :password %></td>
+        <td><%= f.password_field :password %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :password_confirmation %></td>
+        <td><%= f.password_field :password_confirmation %></td>
+      </tr>
+    <% end %>
+    <% if admin_user? %>
+      <tr>
+        <td><%= f.label :admin %></td>
+        <td><%= f.check_box(:admin) %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :active %></td>
+        <td><%= f.check_box(:active) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><%= f.submit "Változások mentése", class: "btn btn-primary btn-medium" %>
+  </table>
+<% end %>

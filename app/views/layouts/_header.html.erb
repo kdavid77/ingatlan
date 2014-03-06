@@ -6,17 +6,29 @@
           <%= current_user.name %>
         <% end %>
         <nav>
-          <ul class="nav nav-pills pull-right">
-            <li><%= link_to("Home",root_path) %></li>
-            <% if signed_in? %>
-              <li><%= link_to("Saját", "#") %>
+          <% if signed_in? %>
+            <ul class="nav navbar-inner pull-right">
+              <li><%= link_to("Home",root_path) %></li>
+              <li><%= link_to("Ingatlanok", "#") %></li>
+              <li><%= link_to("Tranzakciók", "#") %></li>
+              <% if admin_user? %>
+                <li><%= link_to("Felhasználók", users_path) %></li>
+              <% else %>
+                <% if signed_in? %>
+                  <li><%= link_to("Saját", edit_user_path(current_user))  %></li>
+                <% end %>
+              <% end %>
               <li><%= link_to("Kilépés", signout_path, method: "delete") %>
+            </ul>
             <% else %>
+            <ul class="nav navbar-inner pull-right">
+              <li><%= link_to("Home",root_path) %></li>
               <li><%= link_to("Belépés",signin_path) %></li>
               <li><%= link_to("Regisztráció",signup_path) %></li>
-            <% end %>
-          </ul>
+            </ul>
+          <% end %>
         </nav>
       </div> <!-- container -->
     </div> <!-- navbar-inner -->
+    
   </header> <!-- header -->
