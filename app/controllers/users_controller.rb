@@ -98,9 +98,14 @@ class UsersController < ApplicationController
     else
       @user=User.find_by_email(params[:user][:email])
       if @user
-	RegMailer.confirmation_request(@user).deliver
-        flash[:success]="Jelszó újraküldve. Megerősítés után jelentkezzen be!"
-	redirect_to signin_path
+	if @user.active
+	  flash[:error]="A felhasználó aktív!"
+	  redirect_to signin_path
+	else
+	  RegMailer.confirmation_resend(@user).deliver
+          flash[:success]="Link újraküldve. Megerősítés után kérjük, jelentkezzen be!"
+	  redirect_to signin_path
+	end
       else
 	flash[:error]="E-mail cím nincs regisztrálva. Most megteheti! :)"
 	redirect_to signup_path
