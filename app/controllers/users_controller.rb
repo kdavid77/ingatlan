@@ -87,6 +87,27 @@ class UsersController < ApplicationController
     end
   end
   
+  def resend
+    
+  end
+  
+  def resent
+    if params[:user][:email].empty?
+      flash[:error]="Email cím és jelszó kötelező. Ha még nem regisztrált, most megteheti..."
+      redirect_to signup_path
+    else
+      @user=User.find_by_email(params[:user][:email])
+      if @user
+	RegMailer.confirmation_request(@user).deliver
+        flash[:success]="Jelszó újraküldve. Megerősítés után jelentkezzen be!"
+	redirect_to signin_path
+      else
+	flash[:error]="E-mail cím nincs regisztrálva. Most megteheti! :)"
+	redirect_to signup_path
+      end
+    end
+  end
+  
   private
   
     def user_params

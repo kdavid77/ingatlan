@@ -21,6 +21,7 @@ class StaticPagesController < ApplicationController
 	redirect_to signup_path
       else
 	user.update_attribute(:active, true)
+	redirect_to singin_path
       end
     else
       redirect_to signup_path

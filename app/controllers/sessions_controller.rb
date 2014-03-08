@@ -5,9 +5,14 @@ class SessionsController < ApplicationController
   def create
     user=User.find_by_email(params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      flash[:success]="Üdv, " + user.name
-      sign_in user
-      redirect_to root_path
+      if user.active 
+        flash[:success]="Üdv, " + user.name
+        sign_in user
+        redirect_to root_path
+      else
+	flash[:error]="Kérjük, ellenőrizze a postafiókját és a küldött link segítségével erősítse meg a regisztrációját!"
+	redirect_to signin_path
+      end
     else
       flash.now[:error]="Nem sikerult"
       render 'new'
