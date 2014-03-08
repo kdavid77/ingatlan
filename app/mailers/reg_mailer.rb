@@ -10,6 +10,6 @@ class RegMailer < ActionMailer::Base
   def confirmation_resend(user)
     @user=user
     @url="ingatlan.herokuapp.com/confirm?rt=" + @user.remember_token
-    mail(to: @user.email, subject: "Ingatlan adatbázis regisztráció megerősítés")
+    mail(to: @user.email, subject: "Megerősítés újra")
   end
 end
