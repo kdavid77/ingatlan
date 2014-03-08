@@ -16,10 +16,10 @@ class StaticPagesController < ApplicationController
   
   def confirm
     if (params.has_key?(:rt))
-      user=User.find_by_remember_token(:rt)
+      user=User.find_by_remember_token(params[:rt])
       if user
 	user.update_attribute(:active, true)
-	redirect_to singin_path
+	redirect_to signin_path
       else
 	redirect_to signup_path
 	flash[:error]="Érvénytelen kód"

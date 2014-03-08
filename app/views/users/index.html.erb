@@ -5,6 +5,7 @@
     <th>UID</th>
     <th>Name</th>
     <th>E-mail</th>
+    <th>RT</th>
     <th>isActive?</th>
     <th>isAdmin?</th>
   </tr>
@@ -14,6 +15,7 @@
       <td><%= u.id %></td>
       <td><%= link_to u.name, edit_user_path(u) %></td>
       <td><%= u.email %></td>
+      <td><%= u.remember_token %></td>
       <td><%= u.active %></td>
       <td><%= u.admin %></td>
     <tr>
