@@ -19,6 +19,7 @@ class StaticPagesController < ApplicationController
       user=User.find_by_remember_token(:rt)
       if user.nil?
 	redirect_to signup_path
+	flash.now[:error]="Érvénytelen kód"
       else
 	user.update_attribute(:active, true)
 	redirect_to singin_path
