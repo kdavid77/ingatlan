@@ -103,7 +103,6 @@ class UsersController < ApplicationController
 	  redirect_to signin_path
 	else
 	  remember_token=User.new_remember_token
-          cookies.permanent[:remember_token] = remember_token
           @user.update_attribute(:remember_token, User.hash(remember_token))
 	  RegMailer.confirmation_resend(@user).deliver
           flash[:success]="Link újraküldve. Megerősítés után kérjük, jelentkezzen be!"
