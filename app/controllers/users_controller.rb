@@ -88,7 +88,6 @@ class UsersController < ApplicationController
   end
   
   def resend
-    
   end
   
   def resent
