@@ -3,9 +3,13 @@
 - regisztracio - ok
 - autorizacio - ok
 - uj ingatlan letrehozasa
-  - megnevezes
+  - leiras
   - tipus
   - telepules
+- megjegyzesek
+  - datum
+  - szoveg
+  - szerzo
 - ingatlan adatok
   - utca
   - utcaresz
