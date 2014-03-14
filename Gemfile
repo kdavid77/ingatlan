@@ -5,9 +5,9 @@ gem 'rails', '4.0.0'
 gem 'bcrypt-ruby', '~>3.0.0'
 gem 'bootstrap-sass', '2.3.2.0'
 
-gem 'actionmailer'
+gem 'actionmailer', '4.0.0'
 
-gem 'postmark-rails'
+gem 'postmark-rails', '0.6.0'
 
 group :production do
   gem 'pg'
@@ -16,7 +16,7 @@ end
 
 # Use sqlite3 as the database for Active Record
 group :development do
-  gem 'sqlite3'
+  gem 'sqlite3', '1.3.9'
 end
 
 # Use SCSS for stylesheets
@@ -32,10 +32,10 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails','3.1.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks','2.2.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

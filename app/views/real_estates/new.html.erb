@@ -1,2 +1,15 @@
-<h1>RealEstates#new</h1>
-<p>Find me in app/views/real_estates/new.html.erb</p>
+<%= provide(:title, "Új ingatlan") %>
+
+<h1>Ingatlan adatok:</h1>
+
+<%= form_for @real_estate do |f| %>
+  <%= f.label "Ingatlan típusa:" %>
+  <%= f.select :rs_type, RStype %>
+  <%= f.label "Település:" %>
+  <%= f.select :locality, RSlocality %>
+  <%= f.label "Cím:" %>
+  <%= f.text_field :address %>
+  <%= f.label "Rövid leírás:" %>
+  <%= f.text_field :description %>
+  <%= f.submit "Mentés", class: "btn btn-large btn-primary" %>
+<% end %>

@@ -1,2 +1,43 @@
-<h1>RealEstates#show</h1>
-<p>Find me in app/views/real_estates/show.html.erb</p>
+<%= provide(:title, @real_estate.rs_type) %>
+
+<%= link_to "Vissza", real_estates_path %>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      
+      <h2>
+        <%= @real_estate.rs_type %>
+      </h2>
+    </section>
+    <%= image_tag "testimages/testkicsi.jpg" %>
+  </aside>
+  <div class="span8">
+    <h4>
+      <%= @real_estate.locality %>
+    </h4>
+    <h5>
+      <%= @real_estate.address %>
+    </h5>
+    <p>
+      <%= @real_estate.description %>
+    </p>
+    <%= link_to "Szerkeszt", edit_real_estate_path(@real_estate), class: "btn btn-medium btn-primary" %>
+  </div>  
+  <div class="span12">
+    <h5>Képek?</h5>
+    <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
+  </div>
+  <div class="span12">
+    <h5>Dokumentumok?</h5>
+    <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
+  </div>
+  <div class="span12">
+    <h5>Részletek</h5>
+    <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
+  </div>
+  <div class="span12">
+    <h5>Bejegyzések</h5>
+    <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
+  </div>
+</div>

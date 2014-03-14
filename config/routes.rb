@@ -3,15 +3,25 @@ Imdb::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   root 'static_pages#home'
+
+# sessions
+  
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
+  
+# users
+  
   match '/signup', to: 'users#new', via: 'get'
-  match '/about', to: 'static_pages#about', via: 'get'
-  match '/confirm', to: 'static_pages#confirm', via: 'get'
-  match "/contact", to: "static_pages#contact", via: "get"
   match "/resend", to: "users#resend", via: "get"
   match "/resent", to: "users#resent", via: "post"
   
+# static_pages
+  
+  match '/about',   to: 'static_pages#about', via: 'get'
+  match '/confirm', to: 'static_pages#confirm', via: 'get'
+  match '/contact', to: 'static_pages#contact', via: 'get'
+
+# real_estates  
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
