@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140314043335) do
+ActiveRecord::Schema.define(version: 20140315184057) do
+
+  create_table "details", force: true do |t|
+    t.string   "repar"
+    t.string   "reval"
+    t.integer  "real_estate_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "details", ["real_estate_id", "created_at"], name: "index_details_on_real_estate_id_and_created_at"
+
+  create_table "re_infos", force: true do |t|
+    t.string   "repar"
+    t.string   "reval"
+    t.integer  "real_estate_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "re_infos", ["real_estate_id", "created_at"], name: "index_re_infos_on_real_estate_id_and_created_at"
 
   create_table "real_estates", force: true do |t|
     t.string   "rs_type"

@@ -22,22 +22,45 @@
     <p>
       <%= @real_estate.description %>
     </p>
+    <p><em>
+      Feljegyezve: <%= @real_estate.created_at %>
+    </em></p>
     <%= link_to "Szerkeszt", edit_real_estate_path(@real_estate), class: "btn btn-medium btn-primary" %>
   </div>  
   <div class="span12">
+    <h5>Részletek</h5>
+    <% if @real_estate.detail.any? %>
+      <table class="table table-hover table-condensed">
+        <% @real_estate.detail.each do |det| %>
+          <tr>
+            <td><%= det.repar %></td>
+            <td><%= det.reval %></td>
+            <td><em><%= det.created_at %></em></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+    <div class="span12">
+      <%= link_to "Szerkeszt", edit_detail_path, class: "btn btn-medium btn-primary" %>
+    </div>
+  </div>
+  <div class="span12">
     <h5>Képek?</h5>
-    <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
+    <div class="span12">
+      <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
+    </div>
   </div>
   <div class="span12">
     <h5>Dokumentumok?</h5>
-    <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
+    <div class="span12">
+      <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
+    </div>
   </div>
-  <div class="span12">
-    <h5>Részletek</h5>
-    <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
-  </div>
+
   <div class="span12">
     <h5>Bejegyzések</h5>
-    <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
+    <div class="span12">
+      <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
+    </div>
   </div>
 </div>

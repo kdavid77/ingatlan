@@ -1,0 +1,11 @@
+ <table>
+   <% RSpar.each do |l| %>
+     <%= form_for :detail do |f| %>
+       <tr>
+         <td><%= f.text_field :repar, :value => l, :readonly => true %> </td> 
+         <td><%= f.text_field :reval %></td>
+         <td style="padding-left: 20px;padding-bottom: 10px;"><%= f.submit "Ment", class: "btn btn-small btn-primary" %></td>
+       </tr>
+     <% end %>
+   <% end %>
+ </table>

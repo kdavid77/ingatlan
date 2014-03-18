@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  repar: MyString
+  reval: MyString
+  real_estate_id: 1
+
+two:
+  repar: MyString
+  reval: MyString
+  real_estate_id: 1

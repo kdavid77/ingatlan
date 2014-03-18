@@ -1,0 +1,34 @@
+<% provide(:title, "Részletek") %>
+
+<%= link_to "Vissza", real_estate_path(@realestate) %>  <!-- ingatlan alapadatok -->
+<div class="row">
+  <h1><%= @realestate.address %></h1>
+  <h2><%= @realestate.rs_type %></h2>
+  <h3><%= @realestate.locality %></h3>
+  <h3><%= @realestate.description %></h3>
+</div>
+
+<% @paramlist = Hash.new %>                            <!-- ingatlan reszletek beolvasasa a @paramlist hash-be -->
+<% @realestate.detail.each do |d|%>
+  <% @paramlist[d.repar] = d.reval %>
+<% end %>
+
+<% RSpar.each do |l| %>                                <!-- midnen lehetséges paraméterre egy form, ha van akkor :update, ha nincs akkor :create -->
+  <% if @paramlist.has_key?(l) %>
+    <div class="row">
+    <%= form_for @realestate.detail.find_by_repar(l), :url => { :action => :update, :id => @realestate.id } do |f| %>
+      <div class="span4"><%= f.text_field :repar, :readonly => true %></div>
+      <div class="span4"><%= f.text_field :reval %></div>
+      <div class="span2"><%= f.submit "Ment", class: "btn btn-small btn-primary" %></div>
+    <% end %>
+    </div>
+  <% else %>
+    <div class="row">
+    <%= form_for :detail, :url => { :action => :create, :id => @realestate.id } do |f| %>
+      <div class="span4"><%= f.text_field :repar, :value => l, :readonly => true  %></div>
+      <div class="span4"><%= f.text_field :reval, :value => @paramlist[l] %></div>
+      <div class="span2"><%= f.submit "Ment", class: "btn btn-small btn-primary" %></div>
+    <% end %>
+    </div>
+  <% end %>
+<% end %>
