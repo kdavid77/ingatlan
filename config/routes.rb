@@ -1,9 +1,12 @@
 Imdb::Application.routes.draw do
 
-  resources :real_estates
-  resources :details
+  get "comments/new"
+  get "comments/create"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :real_estates
+  resources :details
+  resources :comments, only: [:new, :create]
   root 'static_pages#home'
 
 # sessions
