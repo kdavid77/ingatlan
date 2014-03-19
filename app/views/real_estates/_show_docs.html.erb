@@ -1,0 +1,28 @@
+<div class="span12">
+    <h3>Dokumentumok</h3>
+    <table class="table table-hover table-condensed">
+      <% @real_estate.data_file.each do |d| %>
+        <% @path="/docs/" +@real_estate.rs_type + "/" + @real_estate.id.to_s + "_" + d.file_name %>
+        <tr>
+          <td><%= link_to d.file_name, @path, :action => "download", :target => "_blank" %></td>
+          <td><%= d.file_comment %></td>
+          <td><%= d.created_at %></td>
+          <td><%= User.find_by_id(d.user_id).name %></td>
+        </tr>
+       <% end %>
+    </table>
+    <div class="span12">
+      <% @df=@real_estate.data_file.new%>
+      <% @df.user_id = current_user %>
+      <% @df.real_estate_id = @real_estate.id %>
+      <%= form_for @df do |f| %>
+        <%= f.hidden_field :id, :value => @df.real_estate_id %>
+        <%= f.hidden_field :type, :value => "doc" %>
+        <%= f.label "File kiválasztás" %>
+        <%= f.file_field :Upload %>
+        <%= f.label "Magyarázat" %>
+        <%= f.text_field :file_comment %>
+        <%= f.submit "Upload", class: "btn btn-medium btn-primary" %>
+      <% end %>
+    </div>
+  </div>

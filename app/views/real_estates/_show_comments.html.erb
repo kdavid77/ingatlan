@@ -1,0 +1,23 @@
+  <div class="span12">
+    <h3>Bejegyzések</h3>
+    <div class="span12">
+      <% if @real_estate.comment.any? %>
+        <% @real_estate.comment.each do |r| %>
+          <div class="navbar navbar-inner">
+            <%= r.created_at %> ( <%= User.find_by_id(r.user_id).name %> )
+          </div>
+            <p> <%= raw(r.comment) %> </p>
+        <% end %>
+      <% else %>
+
+      <% end %>
+      <% @c=@real_estate.comment.new %> 
+      <% @c.user_id = current_user %>
+      <% @c.real_estate_id = @real_estate.id %>
+      <%= form_for @c do |f| %>
+        <%= f.text_area :comment, :placeholder => "Új bejegyzés" %>
+        <%= f.hidden_field :id, :value => @c.real_estate_id %>
+        <%= f.submit "Mentés", class: "btn btn-medium btn-primary" %>
+      <% end %>
+    </div>
+  </div>

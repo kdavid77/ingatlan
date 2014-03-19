@@ -1,0 +1,23 @@
+  <aside class="span4">
+    <section>      
+      <h2>
+        <%= @real_estate.rs_type %>
+      </h2>
+    </section>
+    <%= image_tag "testimages/testkicsi.jpg" %>
+  </aside>
+  <div class="span8">
+    <h4>
+      <%= @real_estate.locality %>
+    </h4>
+    <h3>
+      <%= @real_estate.address %>
+    </h3>
+    <p>
+      <%= @real_estate.description %>
+    </p>
+    <p><em>
+      Feljegyezve: <%= @real_estate.created_at %>
+    </em></p>
+    <%= link_to "Szerkeszt", edit_real_estate_path(@real_estate), class: "btn btn-medium btn-primary" %>
+  </div>  
