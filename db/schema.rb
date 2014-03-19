@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318090706) do
+ActiveRecord::Schema.define(version: 20140319075828) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "real_estate_id"
     t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "data_files", force: true do |t|
+    t.string   "file_name"
+    t.string   "file_comment"
+    t.integer  "real_estate_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,6 +55,15 @@ ActiveRecord::Schema.define(version: 20140318090706) do
     t.string   "locality"
     t.string   "address"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rsdata", force: true do |t|
+    t.string   "file_name"
+    t.string   "file_comment"
+    t.integer  "real_estate_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

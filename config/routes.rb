@@ -1,11 +1,14 @@
 Imdb::Application.routes.draw do
 
-  get "comments/new"
-  get "comments/create"
+#  get "data_files/uploadFile"
+#  get "rsdata/uploadFile"
+#  get "comments/new"
+#  get "comments/create"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :real_estates
   resources :details
+  resources :data_files
   resources :comments, only: [:new, :create]
   root 'static_pages#home'
 
