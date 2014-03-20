@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :comment
   has_many :data_file
+  has_many :img_file
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   

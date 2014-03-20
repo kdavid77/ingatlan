@@ -3,4 +3,5 @@ class RealEstate < ActiveRecord::Base
   has_many :detail, dependent: :destroy
   has_many :comment, dependent: :destroy
   has_many :data_file, dependent: :destroy
+  has_many :img_file, dependent: :destroy
 end

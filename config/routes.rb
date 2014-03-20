@@ -9,6 +9,7 @@ Imdb::Application.routes.draw do
   resources :real_estates
   resources :details
   resources :data_files
+  resources :img_files
   resources :comments, only: [:new, :create]
   root 'static_pages#home'
 

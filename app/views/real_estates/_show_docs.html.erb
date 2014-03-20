@@ -12,7 +12,7 @@
        <% end %>
     </table>
     <div class="span12">
-      <% @df=@real_estate.data_file.new%>
+      <% @df=DataFile.new%>
       <% @df.user_id = current_user %>
       <% @df.real_estate_id = @real_estate.id %>
       <%= form_for @df do |f| %>

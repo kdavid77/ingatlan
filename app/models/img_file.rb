@@ -1,4 +1,4 @@
-class DataFile < ActiveRecord::Base
+class ImgFile < ActiveRecord::Base
   belongs_to :real_estate
   belongs_to :user
   default_scope -> { order('created_at DESC') }

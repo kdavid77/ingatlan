@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319075828) do
+ActiveRecord::Schema.define(version: 20140320071259) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 20140319075828) do
   end
 
   add_index "details", ["real_estate_id", "created_at"], name: "index_details_on_real_estate_id_and_created_at"
+
+  create_table "img_files", force: true do |t|
+    t.string   "file_name"
+    t.string   "file_comment"
+    t.string   "real_estate_id"
+    t.string   "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "re_infos", force: true do |t|
     t.string   "repar"

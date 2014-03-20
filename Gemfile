@@ -9,6 +9,8 @@ gem 'actionmailer', '4.0.0'
 
 gem 'postmark-rails', '0.6.0'
 
+gem 'mini_magick', '~> 3.7.0'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'

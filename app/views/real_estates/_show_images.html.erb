@@ -1,6 +1,45 @@
+<div class="span12">
+  <h3>Képek</h3>
+  <table class="table table-hover table-condensed">
+    <% @paros=0 %>
+    <% @real_estate.img_file.each do |i| %>
+      <% @path="/img/" +@real_estate.rs_type + "/" + @real_estate.id.to_s + "_" + i.file_name %>
+      <tr>
+        <td rowspan="2"><%= link_to image_tag(@path, size: "80x60", alt: i.file_comment, title: i.file_comment), @path, :action => "download", :target => "_blank" %></td>
+        <td><%= i.file_comment %></td>
+        <td><%= i.created_at %></td>
+        <td>
+          <% if i.user_id.to_s == current_user.id.to_s %>
+            <%= link_to "Töröl", "#", class: "btn btn-small" %>
+          <% else %>
+            <%= User.find_by_id(i.user_id).name %>
+          <% end %>
+        </td>
+        <tr>
+          <% if i.user_id.to_s == current_user.id.to_s %>
+            <%= form_for @real_estate.img_file.find_by_id(i.id), :url => { :controller => :img_files, :action => :update } do |f|%>
+              <td colspan="2"><%= f.text_field :file_comment, :class => "span10"  %></td>
+                              <%= f.hidden_field :id, :value => i.real_estate_id %>
+                              <%= f.hidden_field :imf_id, :value => i.id %>
+              <td>            <%= f.submit "Ment", class: "btn btn-small" %></td>
+            <% end %>
+          <% end %>
+        </tr>
+      </tr>
+     <% end %>
+  </table>
   <div class="span12">
-    <h3>Képek?</h3>
-    <div class="span12">
-      <%= link_to "Szerkeszt", "#", class: "btn btn-medium btn-primary" %>
-    </div>
+    <% @imf=ImgFile.new%>
+    <% @imf.user_id = current_user %>
+    <% @imf.real_estate_id = @real_estate.id %>
+    <%= form_for @imf do |f| %>
+      <%= f.hidden_field :id, :value => @imf.real_estate_id %>
+      <%= f.hidden_field :type, :value => "img" %>
+      <%= f.label "Kép kiválasztás" %>
+      <%= f.file_field :Upload %>
+      <%= f.label "Magyarázat" %>
+      <%= f.text_field :file_comment %>
+      <%= f.submit "Upload", class: "btn btn-medium btn-primary" %>
+    <% end %>
   </div>
+</div>
