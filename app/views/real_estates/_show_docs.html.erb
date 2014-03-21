@@ -4,10 +4,28 @@
       <% @real_estate.data_file.each do |d| %>
         <% @path="/docs/" +@real_estate.rs_type + "/" + @real_estate.id.to_s + "_" + d.file_name %>
         <tr>
-          <td><%= link_to d.file_name, @path, :action => "download", :target => "_blank" %></td>
-          <td><%= d.file_comment %></td>
+          <% @fn=d.file_name[0..29] %>
+          <% @fn = @fn + "..." unless @fn == d.file_name %>
+          <td rowspan="2"><%= link_to @fn, @path, :action => "download", :target => "_blank" %></td>
+          <td class="span7"><%= d.file_comment %></td>
           <td><%= d.created_at %></td>
-          <td><%= User.find_by_id(d.user_id).name %></td>
+          <td>
+            <% if d && d.user_id.to_s == current_user.id.to_s %>
+              <%= link_to "Töröl", d, method: :delete, data: { confirm: "Biztosan?", :rs_id => d.real_estate_id} , class: "btn btn-small" %>
+            <% else %>
+              <%= User.find_by_id(d.user_id).name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <% if d.user_id.to_s == current_user.id.to_s %>
+            <%= form_for @real_estate.data_file.find_by_id(d.id), :url => { :controller => :data_files, :action => :update } do |f|%>
+              <td colspan="2"><%= f.text_field :file_comment, :class => "span10"  %></td>
+                              <%= f.hidden_field :id, :value => d.real_estate_id %>
+                              <%= f.hidden_field :df_id, :value => d.id %>
+              <td>            <%= f.submit "Módosít", class: "btn btn-small" %></td>
+            <% end %>
+          <% end %>
         </tr>
        <% end %>
     </table>

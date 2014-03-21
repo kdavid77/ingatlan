@@ -9,8 +9,8 @@
         <td><%= i.file_comment %></td>
         <td><%= i.created_at %></td>
         <td>
-          <% if i.user_id.to_s == current_user.id.to_s %>
-            <%= link_to "Töröl", "#", class: "btn btn-small" %>
+          <% if i && i.user_id.to_s == current_user.id.to_s %>
+            <%= link_to "Töröl", i, method: :delete, data: { confirm: "Biztosan?", :rs_id => i.real_estate_id} , class: "btn btn-small" %>
           <% else %>
             <%= User.find_by_id(i.user_id).name %>
           <% end %>
@@ -21,7 +21,7 @@
               <td colspan="2"><%= f.text_field :file_comment, :class => "span10"  %></td>
                               <%= f.hidden_field :id, :value => i.real_estate_id %>
                               <%= f.hidden_field :imf_id, :value => i.id %>
-              <td>            <%= f.submit "Ment", class: "btn btn-small" %></td>
+              <td>            <%= f.submit "Módosít", class: "btn btn-small" %></td>
             <% end %>
           <% end %>
         </tr>
