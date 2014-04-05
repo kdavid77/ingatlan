@@ -4,6 +4,7 @@ Imdb::Application.routes.draw do
 #  get "rsdata/uploadFile"
 #  get "comments/new"
 #  get "comments/create"
+  resources :market_data
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :real_estates

@@ -31,3 +31,22 @@ kell:
 - staticpages - home, login
 - modellek: user, contacts
 - sessions
+
+tranzakio / piac
+- market_data modell
+   - type (ber_ajanlat, eladas_ajanlat, vasarlas_ajanlat, tenyleges_adasvetel, berles)
+   - info_date
+   - event_date
+   - info_source
+   - info_source_status
+   - info_contact
+   - real_estate_id
+   - value
+   - comment
+- market_datas kontroller
+   - new
+   - edit
+   - create
+   - index
+- market_data view
+  ** date_field

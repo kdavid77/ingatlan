@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320071259) do
+ActiveRecord::Schema.define(version: 20140405164800) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -45,6 +45,32 @@ ActiveRecord::Schema.define(version: 20140320071259) do
     t.string   "file_comment"
     t.string   "real_estate_id"
     t.string   "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "market_data", force: true do |t|
+    t.integer  "md_type"
+    t.date     "info_date"
+    t.date     "event_date"
+    t.string   "info_source"
+    t.string   "info_status"
+    t.string   "info_contact"
+    t.integer  "real_estate_id"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "market_infos", force: true do |t|
+    t.integer  "md_type"
+    t.date     "info_date"
+    t.date     "event_date"
+    t.string   "info_source"
+    t.string   "info_status"
+    t.string   "info_contact"
+    t.integer  "real_estate_id"
+    t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

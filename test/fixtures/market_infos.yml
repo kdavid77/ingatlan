@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  md_type: 1
+  info_date: 2014-04-05
+  event_date: 2014-04-05
+  info_source: MyString
+  info_status: MyString
+  info_contact: MyString
+  real_estate_id: 
+  comment: MyString
+
+two:
+  md_type: 1
+  info_date: 2014-04-05
+  event_date: 2014-04-05
+  info_source: MyString
+  info_status: MyString
+  info_contact: MyString
+  real_estate_id: 
+  comment: MyString

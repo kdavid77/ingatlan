@@ -18,7 +18,15 @@
                   <li><%= link_to "Keresés",real_estates_path %></li>
                 </ul>
               </li>
-              <li><%= link_to("Tranzakciók", "#") %></li>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Piac<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Új adat",new_market_datum_path %></li>
+                  <li><%= link_to "Keresés","#" %></li>
+                </ul>
+              </li>
               <% if admin_user? %>
                 <li><%= link_to("Felhasználók", users_path) %></li>
               <% else %>
