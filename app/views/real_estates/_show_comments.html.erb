@@ -1,23 +1,36 @@
-  <div class="span12">
-    <h3>Bejegyzések</h3>
-    <div class="span12">
-      <% if @real_estate.comment.any? %>
-        <% @real_estate.comment.each do |r| %>
-          <div class="navbar navbar-inner">
-            <%= r.created_at %> ( <%= User.find_by_id(r.user_id).name %> )
-          </div>
-            <p> <%= raw(r.comment) %> </p>
-        <% end %>
+<table class="table table-hover table-condensed">
+  <tr><th>
+    <% if cookies[:rs_show_comments].nil? %>
+      <% cookies[:rs_show_comments] = 0 %>
+      <%= link_to "+", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_show_comments=1" ' %>
+    <% else %>
+      <% if cookies[:rs_show_comments]=="1" %>
+        <%= link_to "-", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_show_comments=0" ' %>
       <% else %>
-
+        <%= link_to "+", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_show_comments=1" ' %>
       <% end %>
-      <% @c=@real_estate.comment.new %> 
-      <% @c.user_id = current_user %>
-      <% @c.real_estate_id = @real_estate.id %>
-      <%= form_for @c do |f| %>
-        <%= f.text_area :comment, :placeholder => "Új bejegyzés" %>
-        <%= f.hidden_field :id, :value => @c.real_estate_id %>
-        <%= f.submit "Mentés", class: "btn btn-medium btn-primary" %>
+    <% end %>
+    Bejegyzések
+  </th></tr>
+  
+  <% if cookies[:rs_show_comments]=="1" %>
+    <% if @real_estate.comment.any? %>
+      <% @real_estate.comment.each do |r| %>
+        <tr><td><%= r.created_at %> ( <%= User.find_by_id(r.user_id).name %> )</td></tr>
+        <tr><td><%= raw(r.comment) %> </td></tr>
       <% end %>
-    </div>
-  </div>
+    <% end %>
+    
+    </table>
+    
+    <% @c=@real_estate.comment.new %> 
+    <% @c.user_id = current_user %>
+    <% @c.real_estate_id = @real_estate.id %>
+    <%= form_for @c do |f| %>
+      <%= f.text_area :comment, :placeholder => "Új bejegyzés" %>
+      <%= f.hidden_field :id, :value => @c.real_estate_id %>
+      <%= f.submit "Mentés", class: "btn btn-small btn-primary" %>
+    <% end %>
+  <% else %>
+    </table>
+  <% end %>

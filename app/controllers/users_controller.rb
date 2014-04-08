@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def new
     u=User.all
     if u.empty?
+      puts "********************* uj telepites ***********************************"
       newDefaultUser=User.new(name:"admin", email:"admin@example.com", password:"admin123", password_confirmation:"admin123", admin:true, active:true)
       newDefaultUser.save
     end

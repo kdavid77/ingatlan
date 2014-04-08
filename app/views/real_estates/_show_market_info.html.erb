@@ -1,0 +1,78 @@
+<table class="table table-hover table-condensed">
+<tr><th>
+    <% if cookies[:rs_market_info].nil? %>
+      <% cookies[:rs_market_info] = 0 %>
+      <%= link_to "+", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_market_info=1" ' %>
+    <% else %>
+      <% if cookies[:rs_market_info]=="1" %>
+        <%= link_to "-", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_market_info=0" ' %>
+      <% else %>
+        <%= link_to "+", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_market_info=1" ' %>
+      <% end %>
+    <% end %>
+    Piac
+  </th></tr>
+  
+  <% if cookies[:rs_market_info]=="1" %>
+    <% if @real_estate.market_info.any? %>
+      <% @real_estate.market_info.each do |d| %>
+      <tr>
+        <th><%= d.event_date %></th>
+        <th><%= TRtype[d.md_type] %></th>
+        <th><%= d.value %> lej</th>
+        <th><%= TRval_type[d.value_type.to_i] %></th>
+      </tr>
+      <tr>
+        <td colspan="4"><%= "Információ forrás:" + d.info_source + ", minőség:" + d.info_status%></td>
+      </tr>
+      <tr>
+        <td colspan="4"><%= "elérhetőség:" + d.info_contact %></td>
+      </tr>
+      <tr>
+         <td colspan="4"><%= "bejegyzés dátuma:" + d.info_date.to_s + ", elkövető:" + User.find_by_id(d.user_id).name %></td>
+      </tr>
+      <% end %>
+    <% else %>
+      <tr><td>nincs bejegyzés</td></tr>
+    <% end %>
+    </table>
+    <p style="color:red;">
+    <% if cookies[:rs_new_info].nil? %>
+      <% cookies[:rs_new_info] = 0 %>
+      <%= link_to "+", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_new_info=1" ' %>
+    <% else %>
+      <% if cookies[:rs_new_info]=="1" %>
+        <%= link_to "-", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_new_info=0" ' %>
+      <% else %>
+        <%= link_to "+", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_new_info=1" ' %>
+      <% end %>
+    <% end %>
+    Új piaci információ</p>
+    
+    <% if cookies[:rs_new_info]=="1" %>
+      <% @mi=@real_estate.market_info.new %>
+      <% @mi.user_id = current_user %>
+      <%= form_for @mi do |f| %>
+        <%= f.hidden_field :real_estate_id, :value => @mi.real_estate_id %>
+        <%= f.label "Információ típus" %>
+        <%= f.select :md_type, TRtype  %>
+        <%= f.label "Érték (lej)" %>
+        <%= f.text_field :value, "value" => 0 %>
+        <%= f.label "Érték típus:" %>
+        <%= f.select :value_type, TRval_type  %>
+        <%= f.label "Információ dátuma" %></td>
+        <%= f.date_field :info_date, "value" => Time.now.to_date.to_s %></td>
+        <%= f.label "Tranzakció dátuma" %></td>
+        <%= f.date_field :event_date, "value" => Time.now.to_date.to_s %></td>
+        <%= f.label "Információ forrás" %></td>
+        <%= f.text_field :info_source %></td>
+        <%= f.label "Információ minősége" %></td>
+        <%= f.text_field :info_status %></td>
+        <%= f.label "Kapcsolat" %></td>
+        <%= f.text_field :info_contact %></td>
+        <%= f.submit "Mentés", class: "btn btn-small btn-primary" %>
+      <% end %>
+    <% end %>
+  <% else %>
+    </table>
+  <% end %>

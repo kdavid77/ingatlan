@@ -7,7 +7,7 @@ one:
   info_source: MyString
   info_status: MyString
   info_contact: MyString
-  real_estate_id: 
+  real_estate_id: 1
   comment: MyString
 
 two:
@@ -17,5 +17,5 @@ two:
   info_source: MyString
   info_status: MyString
   info_contact: MyString
-  real_estate_id: 
+  real_estate_id: 1
   comment: MyString

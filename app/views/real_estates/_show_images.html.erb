@@ -1,7 +1,19 @@
-<div class="span12">
-  <h3>Képek</h3>
-  <table class="table table-hover table-condensed">
-    <% @paros=0 %>
+<table class="table table-hover table-condensed">
+  <tr><th>
+    <% if cookies[:rs_show_img_list].nil? %>
+      <% cookies[:rs_show_img_list] = 0 %>
+      <%= link_to "+", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_show_img_list=1" ' %>
+    <% else %>
+      <% if cookies[:rs_show_img_list]=="1" %>
+        <%= link_to "-", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_show_img_list=0" ' %>
+      <% else %>
+        <%= link_to "+", real_estate_path(@real_estate), :onclick => 'document.cookie="rs_show_img_list=1" ' %>
+      <% end %>
+    <% end %>
+    Képek
+  </th></tr>
+  
+  <% if cookies[:rs_show_img_list]=="1" %>
     <% @real_estate.img_file.each do |i| %>
       <% @path="/img/" +@real_estate.rs_type + "/" + @real_estate.id.to_s + "_" + i.file_name %>
       <tr>
@@ -16,18 +28,21 @@
           <% end %>
         </td>
         <tr>
-          <% if i.user_id.to_s == current_user.id.to_s %>
-            <%= form_for @real_estate.img_file.find_by_id(i.id), :url => { :controller => :img_files, :action => :update } do |f|%>
-              <td colspan="2"><%= f.text_field :file_comment, :class => "span10"  %></td>
-                              <%= f.hidden_field :id, :value => i.real_estate_id %>
-                              <%= f.hidden_field :imf_id, :value => i.id %>
-              <td>            <%= f.submit "Módosít", class: "btn btn-small" %></td>
-            <% end %>
+        <% if i.user_id.to_s == current_user.id.to_s %>
+          <%= form_for @real_estate.img_file.find_by_id(i.id), :url => { :controller => :img_files, :action => :update } do |f|%>
+            <td colspan="2"><%= f.text_field :file_comment, maxlength: 100, :class => "span10"  %></td>
+                            <%= f.hidden_field :id, :value => i.real_estate_id %>
+                            <%= f.hidden_field :imf_id, :value => i.id %>
+              <td>          <%= f.submit "Módosít", class: "btn btn-small" %></td>
           <% end %>
+        <% end %>
         </tr>
       </tr>
-     <% end %>
-  </table>
+    <% end %>
+  <% end %>
+</table>
+
+<% if cookies[:rs_show_img_list] && cookies[:rs_show_img_list]=="1" %>
   <div class="span12">
     <% @imf=ImgFile.new%>
     <% @imf.user_id = current_user %>
@@ -35,11 +50,10 @@
     <%= form_for @imf do |f| %>
       <%= f.hidden_field :id, :value => @imf.real_estate_id %>
       <%= f.hidden_field :type, :value => "img" %>
-      <%= f.label "Kép kiválasztás" %>
       <%= f.file_field :Upload %>
       <%= f.label "Magyarázat" %>
       <%= f.text_field :file_comment %>
-      <%= f.submit "Upload", class: "btn btn-medium btn-primary" %>
+      <%= f.submit "Feltölt", class: "btn btn-small btn-primary" %>
     <% end %>
   </div>
-</div>
+<% end %>

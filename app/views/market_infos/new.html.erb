@@ -1,0 +1,19 @@
+<% provide(:title, "Új adat") %> 
+
+<h1>Új adat</h1>
+  <%= form_for @market_info do |f| %>
+    <%= f.label "Információ típus" %></td>
+    <%= f.select :md_type, TRtype  %></td>
+    <%= f.label "Ingatlan" %></td>
+    <%= f.select :real_estate_id, @realestates.all.collect { |c| [ c.id.to_s + " - " + c.rs_type + " - " + c.locality + " - " + c.address, c.id ] }, { inlcude_blank: 'None' }  %></td>
+    <%= f.label "Információ dátuma" %></td>
+    <%= f.date_field :info_date, "value" => Time.now.to_date.to_s %></td>
+    <%= f.label "Tranzakció dátuma" %></td>
+    <%= f.date_field :event_date, "value" => Time.now.to_date.to_s %></td>
+    <%= f.label "Információ forrás" %></td>
+    <%= f.text_field :info_source %></td>
+    <%= f.label "Információ minősége" %></td>
+    <%= f.text_field :info_status %></td>
+    <%= f.label "Kapcsolat" %></td>
+    <%= f.text_field :info_contact %></td>
+  <% end %>

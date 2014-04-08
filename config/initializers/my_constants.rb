@@ -4,4 +4,5 @@
   RSpar = ['elhelyezkedés','szintek','emelet','telek','alap','pince','alapfödém','szerkezet','falak','közbenső födém','tetőszerkezet',
            'lépcsők','héjazat','nyílászárók','falburkolat','padlóburkolat','víz','villany','fűtés','csatorna','gazd. jellemzők','felhasználás',
            'egyéb alkotóelemek']
-  TRtype = ["Kinálat - bér", "Keresklet-bér","Kínálat","Kereslet","Bér","Adásvétel"]
+  TRtype = ["Kinálat - bér", "Kereslet-bér","Kínálat","Kereslet","Bér","Adásvétel"]
+  TRval_type = ["teljes", "teljes/nm","havi bér","havi bér/nm"]
