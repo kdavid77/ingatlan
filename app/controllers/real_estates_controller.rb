@@ -37,12 +37,19 @@ class RealEstatesController < ApplicationController
   end
 
   def index
-    @real_estate_list=RealEstate.all
+    @filter = []
+    if params[:tipus] && params[:tipus]!=""
+      @filter << ["rs_type=\"#{params[:tipus]}\""]
+    end
+    if params[:telepules] && params[:telepules]!=""
+      @filter << ["locality=\"#{params[:telepules]}\""]
+    end
+    @real_estate_list=RealEstate.where(@filter.join(" AND "))
   end
   
   private
   
     def real_estate_params
-      params.require(:real_estate).permit(:rs_type, :locality, :address, :description)
+      params.require(:real_estate).permit(:rs_type, :locality, :address, :description, :surface, :area)
     end
 end

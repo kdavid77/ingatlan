@@ -13,22 +13,35 @@
   <% @paramlist[d.repar] = d.reval %>
 <% end %>
 
-<% RSpar.each do |l| %>                                <!-- midnen lehetséges paraméterre egy form, ha van akkor :update, ha nincs akkor :create -->
+<% @options=[] %>
+<% RSpar.each do |l,list| %>                                <!-- midnen lehetséges paraméterre egy form, ha van akkor :update, ha nincs akkor :create -->
   <% if @paramlist.has_key?(l) %>
     <div class="row">
-    <%= form_for @realestate.detail.find_by_repar(l), :url => { :action => :update, :id => @realestate.id } do |f| %>
-      <div class="span4"><%= f.text_field :repar, :readonly => true %></div>
-      <div class="span4"><%= f.text_field :reval %></div>
-      <div class="span2"><%= f.submit "Ment", class: "btn btn-small btn-primary" %></div>
-    <% end %>
+      <%= form_for @realestate.detail.find_by_repar(l), :url => { :action => :update, :id => @realestate.id } do |f| %>
+        <div class="span4"><%= f.text_field :repar, :readonly => true %></div>
+        <div class="span4">
+          <% if list.empty? %>
+            <%= f.text_field :reval %>
+          <% else %>
+            <%= f.select :reval, list, :include_blank =>true %>
+          <% end %>
+        </div>
+        <div class="span2"><%= f.submit "Ment", class: "btn btn-small btn-primary" %></div>
+      <% end %>
     </div>
   <% else %>
     <div class="row">
-    <%= form_for :detail, :url => { :action => :create, :id => @realestate.id } do |f| %>
-      <div class="span4"><%= f.text_field :repar, :value => l, :readonly => true  %></div>
-      <div class="span4"><%= f.text_field :reval, :value => @paramlist[l] %></div>
-      <div class="span2"><%= f.submit "Ment", class: "btn btn-small btn-primary" %></div>
-    <% end %>
+      <%= form_for :detail, :url => { :action => :create, :id => @realestate.id } do |f| %>
+        <div class="span4"><%= f.text_field :repar, :value => l, :readonly => true  %></div>
+        <div class="span4">
+          <% if list.empty? %>
+              <%= f.text_field :reval, :value => @paramlist[l] %>
+            <% else %>
+              <%= f.select :reval, list, :include_blank => true %>
+          <% end %>
+          </div>
+          <div class="span2"><%= f.submit "Ment", class: "btn btn-small btn-primary" %></div>
+      <% end %>
     </div>
   <% end %>
 <% end %>

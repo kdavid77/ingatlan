@@ -9,6 +9,10 @@
   <%= f.select :locality, RSlocality %>
   <%= f.label "Cím:" %>
   <%= f.text_field :address %>
+  <%= f.label "Felület:" %>
+  <%= f.text_field :surface%>
+  <%= f.label "Teljes terület:" %>
+  <%= f.text_field :area %>
   <%= f.label "Rövid leírás:" %>
   <%= f.text_field :description %>
   <%= f.submit "Mentés", class: "btn btn-large btn-primary" %>

@@ -4,15 +4,23 @@
         <%= @real_estate.rs_type %>
       </h2>
     </section>
-    <%= image_tag "testimages/testkicsi.jpg" %>
+    <% if @real_estate.img_file.count==0 %>
+      <%= image_tag "no image 225x225.jpeg" %>
+    <% else %>
+      <% @path="/img/" +@real_estate.rs_type + "/" + @real_estate.id.to_s + "_" + @real_estate.img_file.last.file_name %>
+      <%= image_tag @path, size: "225x225" %>
+    <% end %>
   </aside>
   <div class="span8">
     <h3>
       <%= @real_estate.locality %>
     </h3>
-    <h4>
+    <h5>
+      Feület <%= @real_estate.surface %> nm, terület: <%= @real_estate.area %> nm
+    </h5>
+    <h5>
       <%= @real_estate.address %>
-    </h4>
+    </h5>
     <p>
       <%= @real_estate.description %>
     </p>
