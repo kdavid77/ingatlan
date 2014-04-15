@@ -39,10 +39,10 @@ class RealEstatesController < ApplicationController
   def index
     @filter = []
     if params[:tipus] && params[:tipus]!=""
-      @filter << ["rs_type=\"#{params[:tipus]}\""]
+      @filter << ["rs_type='#{params[:tipus]}'"]
     end
     if params[:telepules] && params[:telepules]!=""
-      @filter << ["locality=\"#{params[:telepules]}\""]
+      @filter << ["locality='#{params[:telepules]}'"]
     end
     @real_estate_list=RealEstate.where(@filter.join(" AND "))
   end
