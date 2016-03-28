@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.2.6'
 gem 'bcrypt-ruby', '~>3.0.0'
 gem 'bootstrap-sass', '2.3.2.0'
 
-gem 'actionmailer', '4.0.0'
+gem 'actionmailer', '>4.0.0' # > nelkul volt
 
 gem 'postmark-rails', '0.6.0'
 
@@ -18,29 +18,29 @@ end
 
 # Use sqlite3 as the database for Active Record
 group :development do
-  gem 'sqlite3', '1.3.9'
+  gem 'sqlite3', '>=1.3.9' # >= volt
 end
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '> 4.0.0' # ~ volt
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '> 4.0.0' # ~ volt
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails','3.1.0'
+gem 'jquery-rails','>3.1.0' # > nelkul volt
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks','2.2.1'
+gem 'turbolinks','>=2.5.3'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '> 1.2' # ~ volt
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
