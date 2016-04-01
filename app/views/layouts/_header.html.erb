@@ -7,7 +7,7 @@
         <% end %>
         <nav>
           <% if signed_in? %>
-            <ul class="nav navbar-inner pull-right">
+            <ul class="nav navbar-nav navbar-right">
               <li><%= link_to("Home",root_path) %></li>
               <li><%= link_to("Iktató", "#") %></li>
               <li id="fat-menu" class="dropdown">
@@ -37,8 +37,8 @@
               <% end %>
               <li><%= link_to("Kilépés", signout_path, method: "delete") %>
             </ul>
-            <% else %>
-            <ul class="nav navbar-inner pull-right">
+          <% else %>
+            <ul class="nav navbar-nav navbar-right">
               <li><%= link_to("Home",root_path) %></li>
               <li><%= link_to("Belépés",signin_path) %></li>
               <li><%= link_to("Regisztráció",signup_path) %></li>

@@ -46,7 +46,7 @@ h2{
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $grayLight;
+  color: $gray-light;
 }
 
 p{
@@ -78,12 +78,12 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
+  color: $gray-light;
   a{
     color: $gray;
   }
   a:hover{
-    color: $grayDarker;
+    color: $gray-darker;
   }
   ul{
     float: right;
@@ -129,7 +129,7 @@ input {
 aside{
   section{
     padding: 10px, 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     h1{
       font-size: 1.4em;
       text-align: left;
